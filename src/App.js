@@ -1,5 +1,7 @@
+import {useState} from 'react';
 import './App.css';
 import styled from 'styled-components';
+import ReactCardFlip from 'react-card-flip';
 
 function App() {
     //Blob Canvas
@@ -294,37 +296,64 @@ function App() {
         init();
     }
 
+    const [isFlipped, setisFlipped] = useState(false);
+
+    function handelClick(e){
+        e.preventDefault();
+        setisFlipped( prevState => !prevState);
+    }
+
 return (
     <Container>
-        <Card>
-            <Title>
-                <p>Hey There!</p>
-            </Title>
-            {/*Use onClick function to perform the sign in. (using firebase or choice)*/}
-            <GoogleAuthProvider>
-                <i className="fab fa-google"></i><p>Sign in with Google</p>
-            </GoogleAuthProvider>
-            <Line><p>or</p></Line>
-            {/* Use onChange function store input value to a state*/}
-            <Email>
-                <label>Email</label>
-                <input type="email" placeholder="mail@example.com"></input>
-            </Email>
-            {/* Use onChange function store input value to a state*/}
-            <Password>
-                <label>Password</label>
-                <input type="password" placeholder="**********"></input>
-            </Password>
-            {/*Use onClick function to perform the sign in*/}
-            <SignIn>
-                <p>Sign In</p>
-            </SignIn>
-            {/* link to other pages*/}
-            <OtherLinks>
-                <a href='#'>Forgot Password?</a>
-                <p>Already have an account? <a href="#">Login In</a></p>
-            </OtherLinks>
-        </Card>
+        {/* npm install react-card-flip */}
+        <ReactCardFlip flipSpeedFrontToBack={0.6} isFlipped={isFlipped} flipDirection='vertical'>
+            <Card1>
+                <Title>
+                    <p>Hey There!</p>
+                </Title>
+                {/*Use onClick function to perform the sign in. (using firebase or choice)*/}
+                <GoogleAuthProvider>
+                    <i className="fab fa-google"></i><p>Sign in with Google</p>
+                </GoogleAuthProvider>
+                <Line><p>or</p></Line>
+                {/* Use onChange function store input value to a state*/}
+                <Email>
+                    <label>Email</label>
+                    <input type="email" placeholder="mail@example.com"></input>
+                </Email>
+                {/* Use onChange function store input value to a state*/}
+                <Password>
+                    <label>Password</label>
+                    <input type="password" placeholder="**********"></input>
+                </Password>
+                {/*Use onClick function to perform the sign in*/}
+                <SignIn>
+                    <p>Sign In</p>
+                </SignIn>
+                {/* link to other pages*/}
+                <OtherLinks>
+                    <small onClick={handelClick}>Forgot Password?</small>
+                    <p>Don't have an account? <small href="#">Sign Up</small></p>
+                </OtherLinks>
+            </Card1>
+            <Card2>
+                <Email>
+                    <label>Email</label>
+                    <input type="email" placeholder="mail@example.com"></input>
+                </Email>
+                {/* Use onChange function store input value to a state*/}
+                <Password>
+                    <label>New Password</label>
+                    <input type="password" placeholder="**********"></input>
+                </Password>
+                <SignIn>
+                    <p>Sign In</p>
+                </SignIn>
+                <OtherLinks>
+                    <p>Already have an account? <small onClick={handelClick}>Login</small></p>
+                </OtherLinks>
+            </Card2>
+        </ReactCardFlip>
     </Container>
 );
 }
@@ -347,7 +376,7 @@ const Container = styled.div`
     color: #0C090A;
 `
 
-const Card = styled.div`
+const Card1 = styled.div`
     max-height: 400px;
     width: clamp(300px, 50vw, 357px);
     display: flex;
@@ -433,13 +462,24 @@ const OtherLinks = styled.div`
     margin: 5px;
     width:100%;
     display: flex;
-    justify-content: space-between;
-    p{
-        font-size: 0.55rem;
-    }
-    a{
-        font-size: 0.55rem;
+    justify-content: center;
+    font-size: 0.57rem;
+    small{
         color: #2EDFA3;
-        text-decoration: none;
+        font-size: 0.57rem;
+        cursor: pointer;
     }
+    p{
+        margin-left: 10px;
+    }
+`
+
+const Card2 = styled.div`
+    min-height: 400px;
+    width: clamp(300px, 50vw, 357px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px;
 `
