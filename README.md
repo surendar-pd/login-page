@@ -1,4 +1,4 @@
-<a href='https://loginpage-spd.netlify.app/'>DEMO</a>
+<a href='https://loginpage-spd.netlify.app/' target='_blank'>DEMO</a>
 
 # Getting Started with Create React App
 
