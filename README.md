@@ -1,4 +1,5 @@
 <a href='https://loginpage-spd.netlify.app/' target='_blank'>DEMO</a>
+<p>Ctrl+Click to open in new tab.</p>
 
 # Getting Started with Create React App
 
